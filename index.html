@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reed Hsin — AI Solution TPM & Software Engineer</title>
+<meta name="description" content="Reed Hsin — 7+ years in software engineering, now specializing in AI-driven development workflow design and technical program management.">
+<meta name="author" content="Reed Hsin (Chung-Han Hsin)">
+<meta property="og:title" content="Reed Hsin — AI Solution TPM">
+<meta property="og:description" content="Software Engineer → AI Solution TPM. 7+ years across TikTok, Crypto.com, 17Live. Builder of AI-powered products.">
+<meta property="og:url" content="https://musereed.github.io">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   DESIGN SYSTEM
+   ═══════════════════════════════════════ */
+:root {
+  --bg-primary:    #0E1A2F;
+  --bg-card:       #162340;
+  --bg-section:    #0A1425;
+  --bg-hover:      #1C2D4A;
+  --accent-gold:   #D4AD2B;
+  --accent-gold-dim: rgba(212,173,43,0.15);
+  --accent-blue:   #38BDF8;
+  --accent-green:  #4ADE80;
+  --accent-cyan:   #06B6D4;
+  --accent-rose:   #FB7185;
+  --text-primary:  #F5F0E8;
+  --text-secondary:#8B9FC0;
+  --text-muted:    #5A6B88;
+  --border-subtle: rgba(138,159,192,0.1);
+  --border-gold:   rgba(212,173,43,0.25);
+  --font-display:  'Cormorant Garamond', 'Noto Serif TC', Georgia, serif;
+  --font-body:     'DM Sans', 'Noto Serif TC', system-ui, sans-serif;
+  --font-mono:     'JetBrains Mono', 'SF Mono', monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ═══════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+}
+
+a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+a:hover { opacity: 0.8; }
+
+/* ═══════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 3rem);
+}
+
+section {
+  padding: clamp(4rem, 10vh, 7rem) 0;
+  position: relative;
+}
+
+section.alt-bg { background: var(--bg-section); }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--accent-gold);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem 0;
+  transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(14, 26, 47, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--border-subtle);
+  padding: 0.6rem 0;
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 3rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover { color: var(--accent-gold); opacity: 1; }
+
+.lang-toggle {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.lang-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.04em;
+}
+.lang-btn.active {
+  background: var(--accent-gold-dim);
+  color: var(--accent-gold);
+}
+
+.nav-mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* ═══════════════════════════════════════
+   SECTION 1 — HERO
+   ═══════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212,173,43,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(56,189,248,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 60% at 10% 90%, rgba(6,182,212,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* subtle grid pattern */
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.3;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-out-expo) 0.3s forwards;
+}
+
+.hero-role {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-out-expo) 0.5s forwards;
+}
+.hero-role .arrow {
+  color: var(--accent-gold);
+  margin: 0 0.5rem;
+}
+
+.hero-tags {
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem, 1.2vw, 0.82rem);
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-out-expo) 0.7s forwards;
+}
+.hero-tags .sep {
+  margin: 0 0.6rem;
+  color: var(--border-subtle);
+}
+
+.hero-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-out-expo) 0.9s forwards;
+}
+.hero-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.03em;
+}
+.hero-link:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  opacity: 1;
+  background: var(--accent-gold-dim);
+}
+.hero-link svg { width: 16px; height: 16px; }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-out-expo) 1.2s forwards;
+}
+.scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 2.5rem;
+  background: linear-gradient(to bottom, var(--text-muted), transparent);
+  margin: 0.5rem auto 0;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════
+   SECTION 2 — CAREER JOURNEY
+   ═══════════════════════════════════════ */
+.timeline {
+  position: relative;
+  margin-top: 3rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent-gold), var(--border-subtle) 70%, transparent);
+}
+
+.timeline-item {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.timeline-year {
+  flex-shrink: 0;
+  width: 5rem;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent-gold);
+  padding-top: 1.1rem;
+}
+
+.timeline-dot {
+  flex-shrink: 0;
+  width: 1rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+.timeline-dot::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--accent-gold);
+  transition: all 0.3s ease;
+}
+.timeline-item:hover .timeline-dot::before {
+  background: var(--accent-gold);
+  box-shadow: 0 0 12px rgba(212,173,43,0.4);
+}
+
+.timeline-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.35s ease;
+  cursor: default;
+}
+.timeline-card:hover {
+  border-color: var(--border-gold);
+  background: var(--bg-hover);
+  transform: translateX(4px);
+}
+
+.timeline-company {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.timeline-role {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.6rem;
+}
+
+.timeline-details {
+  list-style: none;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.timeline-details li {
+  position: relative;
+  padding-left: 1rem;
+}
+.timeline-details li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 4px;
+  height: 4px;
+  border-radius: 1px;
+  background: var(--text-muted);
+}
+
+.timeline-compact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-left: 8rem;
+}
+.timeline-chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.timeline-chip:hover {
+  color: var(--text-secondary);
+  border-color: var(--border-gold);
+}
+.timeline-chip .chip-year {
+  color: var(--accent-gold);
+  margin-right: 0.35rem;
+}
+
+/* ═══════════════════════════════════════
+   SECTION 3 — CORE STRENGTHS
+   ═══════════════════════════════════════ */
+.strengths-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.strength-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border-subtle);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.strength-row:hover {
+  transform: translateY(-2px);
+}
+
+.strength-cell {
+  background: var(--bg-card);
+  padding: 1.25rem 1.5rem;
+  transition: background 0.3s ease;
+}
+.strength-row:hover .strength-cell {
+  background: var(--bg-hover);
+}
+
+.strength-cell-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.strength-what {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.strength-what .highlight {
+  color: var(--accent-gold);
+}
+
+.strength-how {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.strength-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent-cyan);
+  background: rgba(6,182,212,0.08);
+  padding: 0.25rem 0.55rem;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
+}
+
+/* Column headers */
+.strengths-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  margin-bottom: 0.25rem;
+  padding: 0 0.5rem;
+}
+.strengths-header span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+/* ═══════════════════════════════════════
+   SECTION 4 — MUSE-PLATFORM ARCHITECTURE
+   ═══════════════════════════════════════ */
+.arch-wrapper {
+  margin-top: 2.5rem;
+  position: relative;
+}
+
+.arch-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.arch-layer {
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  background: var(--bg-card);
+  transition: all 0.35s ease;
+}
+.arch-layer:hover {
+  border-color: var(--border-gold);
+}
+
+.arch-layer-name {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+}
+
+.arch-modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.arch-module {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.arch-module[data-layer="interfaces"] {
+  background: rgba(56,189,248,0.08);
+  color: var(--accent-blue);
+}
+.arch-module[data-layer="features"] {
+  background: rgba(74,222,128,0.08);
+  color: var(--accent-green);
+}
+.arch-module[data-layer="platform"] {
+  background: rgba(6,182,212,0.08);
+  color: var(--accent-cyan);
+}
+.arch-module[data-layer="infra"] {
+  background: rgba(212,173,43,0.08);
+  color: var(--accent-gold);
+}
+
+.arch-module:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.arch-module[data-layer="interfaces"]:hover { border-color: var(--accent-blue); background: rgba(56,189,248,0.15); }
+.arch-module[data-layer="features"]:hover { border-color: var(--accent-green); background: rgba(74,222,128,0.15); }
+.arch-module[data-layer="platform"]:hover { border-color: var(--accent-cyan); background: rgba(6,182,212,0.15); }
+.arch-module[data-layer="infra"]:hover { border-color: var(--accent-gold); background: rgba(212,173,43,0.15); }
+
+.arch-module.active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.arch-module[data-layer="interfaces"].active { border-color: var(--accent-blue); background: rgba(56,189,248,0.2); }
+.arch-module[data-layer="features"].active { border-color: var(--accent-green); background: rgba(74,222,128,0.2); }
+.arch-module[data-layer="platform"].active { border-color: var(--accent-cyan); background: rgba(6,182,212,0.2); }
+.arch-module[data-layer="infra"].active { border-color: var(--accent-gold); background: rgba(212,173,43,0.2); }
+
+/* connector lines between layers */
+.arch-connector {
+  display: flex;
+  justify-content: center;
+  height: 0;
+  position: relative;
+}
+.arch-connector::before {
+  content: '';
+  position: absolute;
+  top: -0.375rem;
+  width: 1px;
+  height: 0.75rem;
+  background: var(--border-subtle);
+}
+
+/* detail panel */
+.arch-detail {
+  max-width: 720px;
+  margin: 1.25rem auto 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: none;
+  animation: detailSlideIn 0.35s var(--ease-out-expo);
+}
+.arch-detail.visible { display: block; }
+
+.arch-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.arch-detail-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.arch-detail-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.25rem;
+  transition: color 0.2s ease;
+}
+.arch-detail-close:hover { color: var(--text-primary); }
+
+.arch-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.arch-detail-item label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.arch-detail-item p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@keyframes detailSlideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* platform stats */
+.arch-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.arch-stat {
+  text-align: center;
+}
+.arch-stat-value {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+}
+.arch-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ═══════════════════════════════════════
+   SECTION 5 — PRODUCTS
+   ═══════════════════════════════════════ */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.product-card:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.product-screenshot {
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: var(--bg-section);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+.product-screenshot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(212,173,43,0.03) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(56,189,248,0.03) 0%, transparent 50%);
+}
+
+.product-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.product-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.product-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.85rem;
+  line-height: 1.55;
+}
+
+.product-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.1rem;
+}
+.product-metric {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent-green);
+  background: rgba(74,222,128,0.08);
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+}
+
+.product-link {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.3s ease;
+}
+.product-link:hover { gap: 0.7rem; opacity: 1; }
+
+/* ═══════════════════════════════════════
+   SECTION 6 — AI WORKFLOW
+   ═══════════════════════════════════════ */
+.workflow-quote {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.workflow-phases {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+.workflow-phase {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.workflow-phase:hover {
+  border-color: var(--border-gold);
+}
+
+.workflow-phase-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+.workflow-phase-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.workflow-phase-steps {
+  list-style: none;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+.workflow-phase-steps li {
+  padding: 0.35rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+}
+.workflow-phase-steps li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.workflow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4rem;
+  color: var(--accent-gold);
+  font-size: 1.5rem;
+}
+
+.workflow-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.workflow-kpi {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.workflow-kpi:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-2px);
+}
+
+.kpi-value {
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--accent-green);
+  line-height: 1;
+}
+.kpi-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin-top: 0.5rem;
+}
+
+.workflow-applied {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.workflow-applied span {
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════
+   SECTION 7 — WRITING
+   ═══════════════════════════════════════ */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.article-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+.article-card:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-3px);
+}
+
+.article-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 0.65rem;
+}
+
+.article-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+  flex: 1;
+}
+
+.article-date {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.article-read {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: gap 0.3s ease;
+}
+.article-read:hover { gap: 0.6rem; opacity: 1; }
+
+.medium-link {
+  text-align: center;
+}
+.medium-link a {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+.medium-link a:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════
+   SECTION 8 — CONTACT
+   ═══════════════════════════════════════ */
+#contact {
+  text-align: center;
+  padding-bottom: clamp(5rem, 12vh, 8rem);
+}
+
+.contact-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.contact-link:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  opacity: 1;
+  background: var(--accent-gold-dim);
+}
+.contact-link svg { width: 16px; height: 16px; }
+
+.cv-downloads {
+  margin-top: 1.5rem;
+}
+.cv-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+.cv-btns {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.cv-btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-gold);
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.cv-btn:hover {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .products-grid,
+  .articles-grid,
+  .workflow-kpis { grid-template-columns: 1fr; }
+
+  .workflow-phases {
+    grid-template-columns: 1fr;
+  }
+  .workflow-arrow {
+    transform: rotate(90deg);
+    padding: 0;
+  }
+
+  .strength-row {
+    grid-template-columns: 1fr;
+  }
+
+  .arch-stats { gap: 1.5rem; }
+
+  .arch-detail-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: block; }
+
+  /* mobile nav overlay */
+  .nav-links.mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(14, 26, 47, 0.97);
+    backdrop-filter: blur(12px);
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 200;
+  }
+  .nav-links.mobile-open a { font-size: 1.1rem; }
+
+  .timeline::before { left: 0.5rem; }
+  .timeline-year {
+    width: auto;
+    position: absolute;
+    top: -0.15rem;
+    left: 1.5rem;
+    font-size: 0.72rem;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: 0;
+  }
+  .timeline-item {
+    padding-left: 1.5rem;
+    padding-top: 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .timeline-compact { padding-left: 1.5rem; }
+
+  .hero-links { flex-direction: column; align-items: center; }
+
+  .strengths-header { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-name { letter-spacing: 0.1em; }
+  .contact-links { flex-direction: column; align-items: center; }
+  .arch-modules { gap: 0.35rem; }
+  .arch-module { font-size: 0.7rem; padding: 0.35rem 0.65rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAV
+     ═══════════════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">RH</a>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#career" data-en="Career" data-zh="經歷">Career</a></li>
+        <li><a href="#strengths" data-en="Strengths" data-zh="能力">Strengths</a></li>
+        <li><a href="#platform" data-en="Platform" data-zh="平台">Platform</a></li>
+        <li><a href="#products" data-en="Products" data-zh="產品">Products</a></li>
+        <li><a href="#workflow" data-en="Workflow" data-zh="方法論">Workflow</a></li>
+        <li><a href="#contact" data-en="Contact" data-zh="聯繫">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中文</button>
+      </div>
+      <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle navigation">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     SECTION 1 — HERO
+     ═══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="hero-name" data-en="Reed Hsin" data-zh="辛忠翰">Reed Hsin</h1>
+    <p class="hero-role">
+      <span data-en="Software Engineer" data-zh="軟體工程師">Software Engineer</span>
+      <span class="arrow">&rarr;</span>
+      <span data-en="AI Solution TPM" data-zh="AI 解決方案 TPM">AI Solution TPM</span>
+    </p>
+    <p class="hero-tags">
+      <span data-en="7+ years" data-zh="7+ 年經驗">7+ years</span>
+      <span class="sep">&middot;</span>
+      <span>TikTok</span>
+      <span class="sep">&middot;</span>
+      <span>Crypto.com</span>
+      <span class="sep">&middot;</span>
+      <span>17Live</span>
+      <br>
+      <span data-en="AI Workflow Design" data-zh="AI 工作流程設計">AI Workflow Design</span>
+      <span class="sep">&middot;</span>
+      <span data-en="Cross-cultural TPM" data-zh="跨文化技術專案管理">Cross-cultural TPM</span>
+    </p>
+    <div class="hero-links">
+      <a href="https://www.linkedin.com/in/chung-han-hsin-54341316b/" target="_blank" class="hero-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/musereed" target="_blank" class="hero-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+      <a href="mailto:hooy123456@gapp.nthu.edu.tw" class="hero-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint" data-en="Scroll" data-zh="向下滾動">Scroll</div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 2 — CAREER JOURNEY
+     ═══════════════════════════════════════ -->
+<section id="career" class="alt-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-en="Experience" data-zh="經歷">Experience</div>
+      <h2 class="section-title" data-en="Career Journey" data-zh="職涯旅程">Career Journey</h2>
+    </div>
+
+    <div class="timeline">
+      <!-- 2026 — Freelance -->
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="timeline-year">2026</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-company" data-en="Freelance — AI Consultant" data-zh="自由接案 — AI 顧問">Freelance — AI Consultant</div>
+          <div class="timeline-role" data-en="AI Consultant & Independent Developer" data-zh="AI 顧問 暨 獨立開發者">AI Consultant & Independent Developer</div>
+          <ul class="timeline-details">
+            <li data-en="Built muse-platform: Personal IDP managing 4 deployed products" data-zh="建構 muse-platform：管理 4 個已部署產品的個人 IDP">Built muse-platform: Personal IDP managing 4 deployed products</li>
+            <li data-en="AI startup dev process consultant (PRD → TDD → Ship)" data-zh="AI 新創開發流程顧問（PRD → TDD → Ship）">AI startup dev process consultant (PRD → TDD → Ship)</li>
+            <li data-en="CCA-Learning: Trilingual study platform (822 notes, 218 SVGs)" data-zh="CCA-Learning：三語學習平台（822 篇筆記、218 張 SVG）">CCA-Learning: Trilingual study platform (822 notes, 218 SVGs)</li>
+            <li data-en="Claude Code Workshop at King's College London" data-zh="倫敦國王學院 Claude Code 工作坊">Claude Code Workshop at King's College London</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2025 — OpenNet -->
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-company">OpenNet</div>
+          <div class="timeline-role" data-en="Senior iOS Engineer & AI Workflow Tech Owner" data-zh="資深 iOS 工程師 暨 AI 工作流程 Tech Owner">Senior iOS Engineer & AI Workflow Tech Owner</div>
+          <ul class="timeline-details">
+            <li data-en="Created AI-Driven Development Workflow (PRD → AI-generated TDD → AI implementation)" data-zh="創建 AI-Driven Development Workflow（PRD → AI 生成 TDD → AI 實作）">Created AI-Driven Development Workflow (PRD → AI-generated TDD → AI implementation)</li>
+            <li data-en="3–5x faster TDD generation, ≥60% AI code adoption, ≤20% TDD deviation" data-zh="TDD 生成加速 3–5 倍、AI 程式碼採用率 ≥60%、TDD 偏差率 ≤20%">3–5x faster TDD generation, ≥60% AI code adoption, ≤20% TDD deviation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2024 — TikTok -->
+      <div class="timeline-item reveal reveal-delay-3">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-company" data-en="ByteDance (TikTok Live)" data-zh="字節跳動（TikTok Live）">ByteDance (TikTok Live)</div>
+          <div class="timeline-role" data-en="Senior iOS Engineer & AI Integration Tech Owner" data-zh="資深 iOS 工程師 暨 AI 導入 Tech Owner">Senior iOS Engineer & AI Integration Tech Owner</div>
+          <ul class="timeline-details">
+            <li data-en="AI Team Liaison: Led adoption of Trae IDE & MCP across engineering team" data-zh="AI 團隊對接窗口：主導 Trae IDE 及 MCP 在工程團隊的導入">AI Team Liaison: Led adoption of Trae IDE & MCP across engineering team</li>
+            <li data-en="Tech Owner: 10-person cross-functional team, data-driven A/B testing" data-zh="Tech Owner：10 人跨職能團隊，數據驅動 A/B 測試">Tech Owner: 10-person cross-functional team, data-driven A/B testing</li>
+            <li data-en="Gift Module Clean Architecture refactor (25% test coverage)" data-zh="Gift Module Clean Architecture 重構（25% 測試覆蓋率）">Gift Module Clean Architecture refactor (25% test coverage)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Earlier roles — compact -->
+      <div class="timeline-compact reveal reveal-delay-4">
+        <div class="timeline-chip" data-en="2023 Crypto.com — Senior iOS (Contract)" data-zh="2023 Crypto.com — 資深 iOS（合約）">
+          <span class="chip-year">2023</span> Crypto.com — Senior iOS (Contract)
+        </div>
+        <div class="timeline-chip" data-en="2021 17Live — Sprint 60%→85%" data-zh="2021 17Live — Sprint 完成率 60%→85%">
+          <span class="chip-year">2021</span> 17Live — Sprint 60%→85%
+        </div>
+        <div class="timeline-chip" data-en="2019 Pinkoi — iOS Engineer" data-zh="2019 Pinkoi — iOS 工程師">
+          <span class="chip-year">2019</span> Pinkoi — iOS Engineer
+        </div>
+        <div class="timeline-chip" data-en="2017 Taiwan MoFA — Belize" data-zh="2017 外交部 — 貝里斯">
+          <span class="chip-year">2017</span> Taiwan MoFA — Belize
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 3 — CORE STRENGTHS
+     ═══════════════════════════════════════ -->
+<section id="strengths">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-en="Core Competencies" data-zh="核心能力">Core Competencies</div>
+      <h2 class="section-title" data-en="What I Bring" data-zh="我能帶來什麼">What I Bring</h2>
+    </div>
+
+    <div class="strengths-header reveal reveal-delay-1">
+      <span data-en="What I Delivered" data-zh="我做到了什麼">What I Delivered</span>
+      <span data-en="How I Did It" data-zh="我怎麼做的">How I Did It</span>
+      <span data-en="Tech Stack" data-zh="用了什麼">Tech Stack</span>
+    </div>
+
+    <div class="strengths-grid">
+      <!-- Row 1 -->
+      <div class="strength-row reveal reveal-delay-1">
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="What" data-zh="成果">What</div>
+          <div class="strength-what" data-en="Adopted AI Workflow across &lt;span class='highlight'&gt;3 organizations&lt;/span&gt;" data-zh="3 個組織導入 &lt;span class='highlight'&gt;AI Workflow&lt;/span&gt;">Adopted AI Workflow across <span class="highlight">3 organizations</span></div>
+        </div>
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="How" data-zh="方法">How</div>
+          <div class="strength-how" data-en="Document-as-Contract + Context Engineering + 2-Phase Pipeline" data-zh="Document-as-Contract + Context Engineering + 2-Phase Pipeline">Document-as-Contract + Context Engineering + 2-Phase Pipeline</div>
+        </div>
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="Tech" data-zh="技術">Tech</div>
+          <div class="strength-tech">
+            <span class="tech-tag">Claude Code</span>
+            <span class="tech-tag">Trae IDE</span>
+            <span class="tech-tag">MCP</span>
+            <span class="tech-tag">Mermaid</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="strength-row reveal reveal-delay-2">
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="What" data-zh="成果">What</div>
+          <div class="strength-what" data-en="Sprint &lt;span class='highlight'&gt;60%→85%&lt;/span&gt; + 10-person Tech Owner" data-zh="Sprint &lt;span class='highlight'&gt;60%→85%&lt;/span&gt; + 10 人 Tech Owner">Sprint <span class="highlight">60%→85%</span> + 10-person Tech Owner</div>
+        </div>
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="How" data-zh="方法">How</div>
+          <div class="strength-how" data-en="Design Review + AI Code Review + Data-driven Decision" data-zh="Design Review + AI Code Review + 數據驅動決策">Design Review + AI Code Review + Data-driven Decision</div>
+        </div>
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="Tech" data-zh="技術">Tech</div>
+          <div class="strength-tech">
+            <span class="tech-tag">Trae MCP</span>
+            <span class="tech-tag">CI/CD Script</span>
+            <span class="tech-tag">A/B Test</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="strength-row reveal reveal-delay-3">
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="What" data-zh="成果">What</div>
+          <div class="strength-what" data-en="Introduced structured dev process to &lt;span class='highlight'&gt;3 teams&lt;/span&gt;" data-zh="導入結構化開發流程至 &lt;span class='highlight'&gt;3 個團隊&lt;/span&gt;">Introduced structured dev process to <span class="highlight">3 teams</span></div>
+        </div>
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="How" data-zh="方法">How</div>
+          <div class="strength-how">PRD→TDD→Ticket→Dev→Ship + Agile</div>
+        </div>
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="Tech" data-zh="技術">Tech</div>
+          <div class="strength-tech">
+            <span class="tech-tag">Clean Arch</span>
+            <span class="tech-tag">TDD</span>
+            <span class="tech-tag">MVVM-C</span>
+            <span class="tech-tag">Scrum</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="strength-row reveal reveal-delay-4">
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="What" data-zh="成果">What</div>
+          <div class="strength-what" data-en="Independently built &lt;span class='highlight'&gt;4 AI-powered products&lt;/span&gt;" data-zh="獨立建構 &lt;span class='highlight'&gt;4 個 AI 產品&lt;/span&gt;">Independently built <span class="highlight">4 AI-powered products</span></div>
+        </div>
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="How" data-zh="方法">How</div>
+          <div class="strength-how" data-en="LLM Application Architecture (RAG+MCP+Pipeline) + Full-stack Delivery" data-zh="LLM 應用架構 (RAG+MCP+Pipeline) + 全端交付">LLM Application Architecture (RAG+MCP+Pipeline) + Full-stack Delivery</div>
+        </div>
+        <div class="strength-cell">
+          <div class="strength-cell-label" data-en="Tech" data-zh="技術">Tech</div>
+          <div class="strength-tech">
+            <span class="tech-tag">Anthropic SDK</span>
+            <span class="tech-tag">DeepSeek</span>
+            <span class="tech-tag">Gemini</span>
+            <span class="tech-tag">Playwright</span>
+            <span class="tech-tag">Supabase</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 4 — MUSE-PLATFORM
+     ═══════════════════════════════════════ -->
+<section id="platform" class="alt-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-en="System Architecture" data-zh="系統架構">System Architecture</div>
+      <h2 class="section-title" data-en="muse-platform" data-zh="muse-platform">muse-platform</h2>
+      <p class="section-subtitle" data-en="A Personal Internal Developer Platform built solo — the backbone powering 3 deployed products below." data-zh="一個人建構的個人內部開發者平台 — 驅動下方三個已部署產品的運營骨幹。">A Personal Internal Developer Platform built solo — the backbone powering 3 deployed products below.</p>
+    </div>
+
+    <div class="arch-wrapper reveal reveal-delay-1">
+      <div class="arch-diagram">
+        <!-- Interfaces Layer -->
+        <div class="arch-layer">
+          <div class="arch-layer-name" data-en="Interfaces Layer" data-zh="介面層">Interfaces Layer</div>
+          <div class="arch-modules">
+            <button class="arch-module" data-layer="interfaces" data-module="mcp-server" onclick="showModuleDetail(this)">MCP Knowledge Server</button>
+            <button class="arch-module" data-layer="interfaces" data-module="ops-server" onclick="showModuleDetail(this)">Ops Server</button>
+            <button class="arch-module" data-layer="interfaces" data-module="telegram-bot" onclick="showModuleDetail(this)">Telegram Bot</button>
+          </div>
+        </div>
+        <div class="arch-connector"></div>
+        <!-- Features Layer -->
+        <div class="arch-layer">
+          <div class="arch-layer-name" data-en="Features Layer" data-zh="功能層">Features Layer</div>
+          <div class="arch-modules">
+            <button class="arch-module" data-layer="features" data-module="crawler" onclick="showModuleDetail(this)">Crawler</button>
+            <button class="arch-module" data-layer="features" data-module="knowledge" onclick="showModuleDetail(this)">Knowledge</button>
+            <button class="arch-module" data-layer="features" data-module="cost" onclick="showModuleDetail(this)">Cost Analysis</button>
+            <button class="arch-module" data-layer="features" data-module="llm-ab" onclick="showModuleDetail(this)">LLM A/B Test</button>
+          </div>
+        </div>
+        <div class="arch-connector"></div>
+        <!-- Platform Layer -->
+        <div class="arch-layer">
+          <div class="arch-layer-name" data-en="Platform Layer" data-zh="平台層">Platform Layer</div>
+          <div class="arch-modules">
+            <button class="arch-module" data-layer="platform" data-module="llm" onclick="showModuleDetail(this)">LLM</button>
+            <button class="arch-module" data-layer="platform" data-module="http" onclick="showModuleDetail(this)">HTTP Clients</button>
+            <button class="arch-module" data-layer="platform" data-module="notify" onclick="showModuleDetail(this)">Notify</button>
+            <button class="arch-module" data-layer="platform" data-module="catalog" onclick="showModuleDetail(this)">Catalog</button>
+            <button class="arch-module" data-layer="platform" data-module="core" onclick="showModuleDetail(this)">Core</button>
+          </div>
+        </div>
+        <div class="arch-connector"></div>
+        <!-- Infra Layer -->
+        <div class="arch-layer">
+          <div class="arch-layer-name" data-en="Infra Layer" data-zh="基礎設施層">Infra Layer</div>
+          <div class="arch-modules">
+            <button class="arch-module" data-layer="infra" data-module="paths" onclick="showModuleDetail(this)">Paths</button>
+            <button class="arch-module" data-layer="infra" data-module="secrets" onclick="showModuleDetail(this)">Secrets</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Panel -->
+      <div class="arch-detail" id="archDetail">
+        <div class="arch-detail-header">
+          <div class="arch-detail-name" id="detailName"></div>
+          <button class="arch-detail-close" onclick="hideModuleDetail()">&times;</button>
+        </div>
+        <div class="arch-detail-grid">
+          <div class="arch-detail-item">
+            <label data-en="Responsibility" data-zh="職責">Responsibility</label>
+            <p id="detailResp"></p>
+          </div>
+          <div class="arch-detail-item">
+            <label data-en="Dependencies" data-zh="依賴">Dependencies</label>
+            <p id="detailDeps"></p>
+          </div>
+          <div class="arch-detail-item">
+            <label data-en="Key Metric" data-zh="關鍵指標">Key Metric</label>
+            <p id="detailMetric"></p>
+          </div>
+          <div class="arch-detail-item">
+            <label data-en="Tech" data-zh="技術">Tech</label>
+            <p id="detailTech"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arch-stats reveal reveal-delay-2">
+      <div class="arch-stat">
+        <div class="arch-stat-value">18</div>
+        <div class="arch-stat-label" data-en="Modules" data-zh="模組">Modules</div>
+      </div>
+      <div class="arch-stat">
+        <div class="arch-stat-value">430+</div>
+        <div class="arch-stat-label" data-en="Commits" data-zh="提交">Commits</div>
+      </div>
+      <div class="arch-stat">
+        <div class="arch-stat-value">4</div>
+        <div class="arch-stat-label" data-en="Layers" data-zh="架構層">Layers</div>
+      </div>
+      <div class="arch-stat">
+        <div class="arch-stat-value">CI/CD</div>
+        <div class="arch-stat-label" data-en="Pipeline" data-zh="自動化管線">Pipeline</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 5 — PRODUCTS
+     ═══════════════════════════════════════ -->
+<section id="products">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-en="Deployed Products" data-zh="已部署產品">Deployed Products</div>
+      <h2 class="section-title" data-en="Powered by muse-platform" data-zh="由 muse-platform 驅動">Powered by muse-platform</h2>
+      <p class="section-subtitle" data-en="One person, building and operating three products with AI." data-zh="一個人用 AI 建構並運營三個產品。">One person, building and operating three products with AI.</p>
+    </div>
+
+    <div class="products-grid">
+      <!-- CCA-Learning -->
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-screenshot" data-en="Screenshot coming soon" data-zh="截圖即將更新">Screenshot coming soon</div>
+        <div class="product-body">
+          <div class="product-name">CCA-Learning</div>
+          <p class="product-desc" data-en="Trilingual Claude certification study platform with dual-perspective content (Engineer + PM) and automated build pipeline." data-zh="三語 Claude 認證學習平台，雙視角內容（工程師 + PM），自動化建構 pipeline。">Trilingual Claude certification study platform with dual-perspective content (Engineer + PM) and automated build pipeline.</p>
+          <div class="product-metrics">
+            <span class="product-metric">822 notes</span>
+            <span class="product-metric">218 SVGs</span>
+            <span class="product-metric">7 courses</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- London Flats -->
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-screenshot" data-en="Screenshot coming soon" data-zh="截圖即將更新">Screenshot coming soon</div>
+        <div class="product-body">
+          <div class="product-name">London Flats</div>
+          <p class="product-desc" data-en="Automated rental aggregator with Claude Haiku LLM fallback for intelligent listing parsing. Daily auto-pipeline." data-zh="自動化租屋聚合平台，Claude Haiku LLM fallback 智慧解析房源，每日自動更新。">Automated rental aggregator with Claude Haiku LLM fallback for intelligent listing parsing. Daily auto-pipeline.</p>
+          <div class="product-metrics">
+            <span class="product-metric">6 platforms</span>
+            <span class="product-metric">432 listings</span>
+            <span class="product-metric">daily refresh</span>
+          </div>
+          <a href="https://musereed.github.io/london-flats/" target="_blank" class="product-link" data-en="View Platform →" data-zh="查看平台 →">View Platform &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Claude Code Workshop -->
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-screenshot" data-en="Screenshot coming soon" data-zh="截圖即將更新">Screenshot coming soon</div>
+        <div class="product-body">
+          <div class="product-name">Claude Code Workshop</div>
+          <p class="product-desc" data-en="3-hour AI agent collaboration curriculum designed for KCL Technology Management master's students." data-zh="為 KCL 科技管理碩士生設計的 3 小時 AI agent 協作工作坊。">3-hour AI agent collaboration curriculum designed for KCL Technology Management master's students.</p>
+          <div class="product-metrics">
+            <span class="product-metric">8 modules</span>
+            <span class="product-metric">CCC Framework</span>
+            <span class="product-metric">3 hours</span>
+          </div>
+          <a href="https://musereed.github.io/claude-code-workshop/" target="_blank" class="product-link" data-en="View Curriculum →" data-zh="查看課程 →">View Curriculum &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 6 — AI WORKFLOW
+     ═══════════════════════════════════════ -->
+<section id="workflow" class="alt-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-en="Methodology" data-zh="方法論">Methodology</div>
+      <h2 class="section-title" data-en="AI-Driven Development Workflow" data-zh="AI 驅動開發工作流程">AI-Driven Development Workflow</h2>
+      <p class="workflow-quote" data-en="&ldquo;Structure your context. Let AI execute.&rdquo;" data-zh="&ldquo;結構化你的 Context，讓 AI 執行。&rdquo;">&ldquo;Structure your context. Let AI execute.&rdquo;</p>
+    </div>
+
+    <div class="workflow-phases reveal reveal-delay-1">
+      <!-- Phase 1 -->
+      <div class="workflow-phase">
+        <div class="workflow-phase-num">Phase 1</div>
+        <div class="workflow-phase-title" data-en="Context Engineering" data-zh="Context 工程">Context Engineering</div>
+        <ul class="workflow-phase-steps">
+          <li data-en="PRD + API Spec + UI/UX Spec" data-zh="PRD + API 規格 + UI/UX 規格">PRD + API Spec + UI/UX Spec</li>
+          <li data-en="AI generates TDD (12 chapters)" data-zh="AI 生成 TDD（12 章節）">AI generates TDD (12 chapters)</li>
+          <li data-en="Human review + Ticket breakdown" data-zh="人工審核 + Ticket 拆分">Human review + Ticket breakdown</li>
+        </ul>
+      </div>
+
+      <div class="workflow-arrow">&rarr;</div>
+
+      <!-- Phase 2 -->
+      <div class="workflow-phase">
+        <div class="workflow-phase-num">Phase 2</div>
+        <div class="workflow-phase-title" data-en="AI Execution" data-zh="AI 執行">AI Execution</div>
+        <ul class="workflow-phase-steps">
+          <li data-en="TDD as sole AI context" data-zh="TDD 作為 AI 唯一 context">TDD as sole AI context</li>
+          <li data-en="Layer-by-layer implementation" data-zh="分層實作">Layer-by-layer implementation</li>
+          <li data-en="Consistency verification + Ship" data-zh="一致性驗證 + 部署">Consistency verification + Ship</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="workflow-kpis reveal reveal-delay-2">
+      <div class="workflow-kpi">
+        <div class="kpi-value">3-5x</div>
+        <div class="kpi-label" data-en="Faster TDD Generation" data-zh="TDD 生成加速">Faster TDD Generation</div>
+      </div>
+      <div class="workflow-kpi">
+        <div class="kpi-value">&ge;60%</div>
+        <div class="kpi-label" data-en="AI Code Adoption Rate" data-zh="AI 程式碼採用率">AI Code Adoption Rate</div>
+      </div>
+      <div class="workflow-kpi">
+        <div class="kpi-value">&le;20%</div>
+        <div class="kpi-label" data-en="TDD Deviation Rate" data-zh="TDD 偏差率">TDD Deviation Rate</div>
+      </div>
+    </div>
+
+    <div class="workflow-applied reveal reveal-delay-3">
+      <span data-en="Applied at:" data-zh="實踐於：">Applied at:</span>
+      <span>OpenNet &middot; AI Startup &middot; Personal Projects</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 7 — WRITING
+     ═══════════════════════════════════════ -->
+<section id="writing">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-en="Tech Blog" data-zh="技術文章">Tech Blog</div>
+      <h2 class="section-title" data-en="Writing" data-zh="文章">Writing</h2>
+    </div>
+
+    <div class="articles-grid">
+      <div class="article-card reveal reveal-delay-1">
+        <div class="article-tag" data-en="AI Workflow" data-zh="AI 工作流程">AI Workflow</div>
+        <div class="article-title" data-en="How I Designed an AI-Driven Dev Workflow That Actually Works" data-zh="我如何設計一個真正可用的 AI 驅動開發工作流程">How I Designed an AI-Driven Dev Workflow That Actually Works</div>
+        <div class="article-date">Coming soon</div>
+        <a href="#" class="article-read" data-en="Read →" data-zh="閱讀 →">Read &rarr;</a>
+      </div>
+
+      <div class="article-card reveal reveal-delay-2">
+        <div class="article-tag" data-en="Platform Engineering" data-zh="平台工程">Platform Engineering</div>
+        <div class="article-title" data-en="Building a Personal IDP: One Engineer's Clean Architecture Journey" data-zh="建構個人 IDP：一個工程師的 Clean Architecture 之旅">Building a Personal IDP: One Engineer's Clean Architecture Journey</div>
+        <div class="article-date">Coming soon</div>
+        <a href="#" class="article-read" data-en="Read →" data-zh="閱讀 →">Read &rarr;</a>
+      </div>
+
+      <div class="article-card reveal reveal-delay-3">
+        <div class="article-tag" data-en="Teaching" data-zh="教學">Teaching</div>
+        <div class="article-title" data-en="Teaching AI Agent Collaboration at King's College London" data-zh="在倫敦國王學院教授 AI Agent 協作">Teaching AI Agent Collaboration at King's College London</div>
+        <div class="article-date">Coming soon</div>
+        <a href="#" class="article-read" data-en="Read →" data-zh="閱讀 →">Read &rarr;</a>
+      </div>
+    </div>
+
+    <div class="medium-link reveal">
+      <a href="https://medium.com/@peterxhsin" target="_blank" data-en="View all on Medium →" data-zh="在 Medium 上查看全部 →">View all on Medium &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 8 — CONTACT
+     ═══════════════════════════════════════ -->
+<section id="contact" class="alt-bg">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="contact-heading" data-en="Let's build something together." data-zh="一起建造些什麼吧。">Let's build something together.</h2>
+    </div>
+
+    <div class="contact-links reveal reveal-delay-1">
+      <a href="https://www.linkedin.com/in/chung-han-hsin-54341316b/" target="_blank" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/musereed" target="_blank" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+      <a href="mailto:hooy123456@gapp.nthu.edu.tw" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email
+      </a>
+    </div>
+
+    <div class="cv-downloads reveal reveal-delay-2">
+      <div class="cv-label" data-en="Download CV" data-zh="下載履歷">Download CV</div>
+      <div class="cv-btns">
+        <a href="assets/cv-1page.pdf" class="cv-btn" data-en="1-Page" data-zh="精簡版">1-Page</a>
+        <a href="assets/cv-2page.pdf" class="cv-btn" data-en="2-Page" data-zh="完整版">2-Page</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span data-en="Built with vanilla HTML/CSS/JS — no frameworks, no dependencies." data-zh="以純 HTML/CSS/JS 打造 — 零框架、零依賴。">Built with vanilla HTML/CSS/JS — no frameworks, no dependencies.</span>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════
+   MODULE DATA
+   ═══════════════════════════════════════ */
+const moduleData = {
+  'mcp-server': {
+    name: 'MCP Knowledge Server',
+    resp: 'FTS5 full-text search across all databases. Exposes knowledge to Claude Code and other MCP clients.',
+    deps: 'muse_core, muse_paths',
+    metric: 'Cross-DB search across 3+ SQLite databases',
+    tech: 'Python, FastMCP, SQLite FTS5'
+  },
+  'ops-server': {
+    name: 'Ops Server',
+    resp: 'REST API for operations dashboard, health checks, issue/board management, and system monitoring.',
+    deps: 'muse_core, muse_catalog, muse_notify',
+    metric: 'Central control plane for all platform operations',
+    tech: 'FastAPI, SQLite, GitHub API'
+  },
+  'telegram-bot': {
+    name: 'Telegram Bot',
+    resp: 'Notification delivery and interactive commands for platform alerts, daily digests, and remote control.',
+    deps: 'muse_notify, muse_core',
+    metric: 'Daily automated notifications + command interface',
+    tech: 'python-telegram-bot, asyncio'
+  },
+  'crawler': {
+    name: 'Crawler System',
+    resp: 'Multi-source web crawler for rental listings, news, and data aggregation with anti-detection strategies.',
+    deps: 'muse_http_clients, muse_llm, muse_core',
+    metric: '6 platforms, 432+ listings per run',
+    tech: 'Playwright, Claude Haiku, Supabase'
+  },
+  'knowledge': {
+    name: 'Knowledge Base',
+    resp: 'FTS5-powered knowledge management with cross-database search and content indexing.',
+    deps: 'muse_core, muse_paths',
+    metric: 'Full-text search across all platform data',
+    tech: 'SQLite FTS5, Python'
+  },
+  'cost': {
+    name: 'Cost Analysis',
+    resp: 'LLM usage tracking, cost breakdown by model/feature, and optimization recommendations.',
+    deps: 'muse_llm, muse_core',
+    metric: 'Per-call cost tracking across all LLM providers',
+    tech: 'Python, SQLite, Anthropic API'
+  },
+  'llm-ab': {
+    name: 'LLM A/B Testing',
+    resp: 'Side-by-side model comparison pipeline with automated scoring and statistical analysis.',
+    deps: 'muse_llm, muse_core',
+    metric: 'Multi-model blind comparison with human eval',
+    tech: 'Anthropic SDK, DeepSeek, Gemini'
+  },
+  'llm': {
+    name: 'LLM Gateway',
+    resp: 'Unified Messages API adapter for all LLM providers. Handles retries, token counting, and cost logging.',
+    deps: 'muse_secrets, muse_core',
+    metric: 'Single interface for 3+ LLM providers',
+    tech: 'Anthropic SDK, httpx'
+  },
+  'http': {
+    name: 'HTTP Clients',
+    resp: 'Shared HTTP client pool with retry policies, rate limiting, and session management.',
+    deps: 'muse_core',
+    metric: 'Centralized connection management',
+    tech: 'httpx, aiohttp'
+  },
+  'notify': {
+    name: 'Notify',
+    resp: 'Multi-channel notification dispatcher (Telegram, console) with template rendering.',
+    deps: 'muse_secrets, muse_core',
+    metric: 'Reliable delivery with audit trail',
+    tech: 'python-telegram-bot, Jinja2'
+  },
+  'catalog': {
+    name: 'Module Catalog',
+    resp: 'Registry of all platform modules. Validates muse.toml configs and enforces dependency rules.',
+    deps: 'muse_paths',
+    metric: '18 modules registered and validated',
+    tech: 'Python, TOML'
+  },
+  'core': {
+    name: 'Core',
+    resp: 'Shared data models, base classes, error types, and utility functions used across all layers.',
+    deps: 'muse_paths',
+    metric: 'Foundation for all 18 modules',
+    tech: 'Python, Pydantic'
+  },
+  'paths': {
+    name: 'Path Resolver',
+    resp: 'Environment-aware path resolution. Eliminates hardcoded paths via MUSE_HOME, MUSE_ENV variables.',
+    deps: 'None (leaf node)',
+    metric: 'Zero hardcoded paths in entire codebase',
+    tech: 'Python, importlib.resources'
+  },
+  'secrets': {
+    name: 'Secrets Manager',
+    resp: 'Three-tier secret resolution: Keychain → .env file → environment variable, with fail-loud behavior.',
+    deps: 'muse_paths',
+    metric: 'Zero secrets in source control',
+    tech: 'Python, keyring, dotenv'
+  }
+};
+
+/* ═══════════════════════════════════════
+   ARCHITECTURE DETAIL PANEL
+   ═══════════════════════════════════════ */
+let activeModule = null;
+
+function showModuleDetail(el) {
+  const key = el.dataset.module;
+  const data = moduleData[key];
+  if (!data) return;
+
+  // toggle if same module clicked
+  if (activeModule === el) {
+    hideModuleDetail();
+    return;
+  }
+
+  // deactivate previous
+  document.querySelectorAll('.arch-module.active').forEach(m => m.classList.remove('active'));
+  el.classList.add('active');
+  activeModule = el;
+
+  document.getElementById('detailName').textContent = data.name;
+  document.getElementById('detailResp').textContent = data.resp;
+  document.getElementById('detailDeps').textContent = data.deps;
+  document.getElementById('detailMetric').textContent = data.metric;
+  document.getElementById('detailTech').textContent = data.tech;
+
+  const panel = document.getElementById('archDetail');
+  panel.classList.add('visible');
+  panel.style.display = 'none';
+  // force reflow for animation
+  void panel.offsetHeight;
+  panel.style.display = '';
+}
+
+function hideModuleDetail() {
+  document.querySelectorAll('.arch-module.active').forEach(m => m.classList.remove('active'));
+  document.getElementById('archDetail').classList.remove('visible');
+  activeModule = null;
+}
+
+/* ═══════════════════════════════════════
+   LANGUAGE TOGGLE
+   ═══════════════════════════════════════ */
+function setLang(lang) {
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.getAttribute(`data-${lang}`);
+    if (val) {
+      // preserve HTML for elements that use innerHTML (strength-what with highlights)
+      if (val.includes('<')) {
+        el.innerHTML = val;
+      } else {
+        el.textContent = val;
+      }
+    }
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+  localStorage.setItem('site-lang', lang);
+}
+
+// restore saved language
+(function() {
+  const saved = localStorage.getItem('site-lang');
+  if (saved && saved !== 'en') setLang(saved);
+})();
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL (Intersection Observer)
+   ═══════════════════════════════════════ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ═══════════════════════════════════════
+   NAV SCROLL EFFECT
+   ═══════════════════════════════════════ */
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ═══════════════════════════════════════
+   MOBILE NAV
+   ═══════════════════════════════════════ */
+function toggleMobileNav() {
+  const links = document.getElementById('navLinks');
+  links.classList.toggle('mobile-open');
+}
+
+// close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('mobile-open');
+  });
+});
+</script>
+</body>
+</html>
